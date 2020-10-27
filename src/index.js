@@ -2,9 +2,20 @@ import Phaser from 'phaser';
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 
 import './styles.css';
-import balconyImg from './images/balcony.jpg';
-import hallImg from './images/hall.jpg';
-import bedroomImg from './images/bedroom.jpg';
+import balconyImg from './images/bg/balcony.jpg';
+import hallImg from './images/bg/hall.jpg';
+import bedroomImg from './images/bg/bedroom.jpg';
+import body_1_img from './images/body/body_1.png';
+import body_2_img from './images/body/body_2.png';
+import arrowImg from './images/arrow.png';
+import ellipseImg from './images/ellipse.png';
+import ellipseAImg from './images/ellipseA.png';
+import hair_1Img from './images/hair/hair_1.png';
+import hair_2Img from './images/hair/hair_2.png';
+import hair_1_backImg from './images/hair/hair_1_back.png';
+import hair_2_backImg from './images/hair/hair_2_back.png';
+import clothes_1Img from './images/clothes/clothes_1.png';
+import clothes_2Img from './images/clothes/clothes_2.png';
 
 import scenario from './ons2.json';
 import renderFirstPage from './firstPage';
@@ -12,8 +23,7 @@ console.log(scenario);
 
 const content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
 
-const innerWidth = window.innerWidth;
-const innerHeight = window.innerHeight;
+export let slider;
 
 class Demo extends Phaser.Scene {
   constructor() {
@@ -26,10 +36,25 @@ class Demo extends Phaser.Scene {
     this.load.image('balcony', balconyImg);
     this.load.image('hall', hallImg);
     this.load.image('bedroom', bedroomImg);
+    this.load.image('body_1', body_1_img);
+    this.load.image('body_2', body_2_img);
+    this.load.image('arrow', arrowImg);
+    this.load.image('ellipse', ellipseImg);
+    this.load.image('ellipseA', ellipseAImg);
+    this.load.image('hair_1', hair_1Img);
+    this.load.image('hair_2', hair_2Img);
+    this.load.image('hair_1_back', hair_1_backImg);
+    this.load.image('hair_2_back', hair_2_backImg);
+    this.load.image('clothes_1', clothes_1Img);
+    this.load.image('clothes_2', clothes_2Img);
   }
 
   create() {
     renderFirstPage(this);
+
+    //////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+
     // const textBox = createTextBox(
     //   this,
     //   innerWidth / 2 - 150,

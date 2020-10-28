@@ -42,7 +42,6 @@ const personConstructor = {
 };
 
 const createTabs = scene => {
-  // console.log(scene);
   var tabs = scene.rexUI.add
     .tabs({
       x: innerWidth / 2,
@@ -99,37 +98,6 @@ const createTabs = scene => {
     },
     scene,
   );
-
-  //   tabs.getElement('panel').x,
-  //   tabs.getElement('panel').y - 20,
-  //   100,
-  //   10,
-  //   {
-  //     bl: 20,
-  //     br: 20,
-  //   },
-  //   0xffffff,
-  // );
-
-  // ifd.setDepth(6);
-
-  // console.log(ifd);
-  // var createButton = function (scene, text) {
-  //   return scene.rexUI.add.label({
-  //     background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x6a4f4b),
-
-  //     text: scene.add.text(0, 0, text, {
-  //       fontSize: '24px',
-  //     }),
-
-  //     space: {
-  //       left: 10,
-  //       right: 10,
-  //       top: 10,
-  //       bottom: 10,
-  //     },
-  //   });
-  // };
 };
 
 const createSbmtBtn = (scene, callback) => {

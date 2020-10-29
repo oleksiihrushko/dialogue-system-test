@@ -1,15 +1,25 @@
 import Dialog from './scenes/dialog.js';
 import { game } from './index.js';
 import Person from './person.js';
-import { createTabs, createSbmtBtn } from './services/creators.js';
+import { Tabs, createNextBtn, createSbmtBtn } from './services/creators.js';
+
+const stageNames = [['body'], ['hair', 'hair_back'], ['clothes']];
+const stageTitles = ['body', 'hair', 'clothes'];
+const mainHeroX = innerWidth / 2;
+const mainHeroY = innerHeight / 2;
+
 export const personConfig = [0, 0, 0];
 
-const renderFirstPage = scene => {
-  const stageNames = [['body'], ['hair', 'hair_back'], ['clothes']];
-  let stageIdx = 0;
-  const mainHeroX = innerWidth / 2;
-  const mainHeroY = innerHeight / 2;
+let stageIdx = 0;
+let chooseText;
+let tabs;
 
+export const setStage = i => {
+  stageIdx = i;
+  chooseText.text = `Choose ${stageTitles[stageIdx]}`;
+};
+
+const renderFirstPage = scene => {
   const bgImg = scene.add.image(0, 0, 'balcony');
   const bgCoef = innerHeight / bgImg.height;
   bgImg.setScale(bgCoef, bgCoef).setPosition(innerWidth / 2, innerHeight / 2);
@@ -31,7 +41,9 @@ const renderFirstPage = scene => {
     flipX: true,
   });
 
-  arrowLeft.setInteractive().on('pointerdown', () => changeOption());
+  arrowLeft
+    .setInteractive()
+    .on('pointerdown', () => person.changeOption(stageNames, stageIdx));
 
   const arrowRight = scene.make.image({
     x: person.body.x + innerWidth / 3,
@@ -43,32 +55,51 @@ const renderFirstPage = scene => {
     person.changeOption(stageNames, stageIdx);
   });
 
-  createTabs(scene);
+  tabs = new Tabs(scene);
 
-  const chooseText = scene.add.text(innerWidth / 2, 600, 'choose body', {
-    fontSize: '16px',
-  });
-  chooseText.setX(chooseText.x - chooseText.width / 2);
+  chooseText = scene.add.text(
+    innerWidth / 2,
+    545,
+    `Choose ${stageTitles[stageIdx]}`,
+    {
+      fontSize: '20px',
+      color: '#000000',
+    },
+  );
+  chooseText.setX(chooseText.x - chooseText.width / 2).setDepth(7);
 
-  createSbmtBtn(scene, () => {
+  createNextBtn(scene, () => {
     if (stageIdx !== stageNames.length - 1) {
       personConfig[stageIdx] = person.idx;
       person.idx = 0;
       stageIdx += 1;
-    } else {
+      chooseText.text = `Choose ${stageTitles[stageIdx]}`;
+      tabs.clickBtn(stageIdx);
+    }
+    // else {
+    //   personConfig[stageIdx] = person.idx;
+    //   game.scene.remove('customization');
+    //   game.scene.add('dialog', Dialog, true);
+    // }
+  });
+
+  createSbmtBtn(
+    scene,
+    () => {
+      // if (stageIdx !== stageNames.length - 1) {
+      //   personConfig[stageIdx] = person.idx;
+      //   person.idx = 0;
+      //   // tabs.removeTopButton(stageIdx, true);
+      //   // tabs.addTopButton(scene.add.image(0, -10, 'ellipseA').setScale(0.8));
+      //   stageIdx += 1;
+      //   chooseText.text = `Choose ${stageTitles[stageIdx]}`;
+      // } else {
       personConfig[stageIdx] = person.idx;
-      // person.destroyPerson();
-      // const pers1 = new Person(
-      //   personConfig,
-      //   scene,
-      //   scaleCoef - 0.2,
-      //   mainHeroX,
-      //   mainHeroY,
-      // );
       game.scene.remove('customization');
       game.scene.add('dialog', Dialog, true);
-    }
-  });
+    },
+    // }
+  );
 };
 
 export default renderFirstPage;

@@ -1,6 +1,4 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => ({
   devtool: 'source-map',
@@ -21,20 +19,7 @@ module.exports = env => ({
     },
   },
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-    ],
+    rules: [],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -48,10 +33,5 @@ module.exports = env => ({
         useShortDoctype: true,
       },
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[name].[id].[contenthash].css',
-    }),
-    new OptimizeCssAssetsPlugin({}),
   ],
 });

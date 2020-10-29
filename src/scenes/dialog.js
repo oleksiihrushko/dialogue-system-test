@@ -4,7 +4,7 @@ import Person from '../person';
 console.log(scenario);
 
 let bgImg;
-let title = null;
+var title = null;
 let textBox;
 let replicId = 0;
 
@@ -15,14 +15,17 @@ const readReplic = (replicId, scene) => {
   if (scenario[replicId].type === 'background') {
     bgImg = scene.add.image(0, 0, scenario[replicId].backgroundName);
     const bgCoef = innerHeight / bgImg.height;
-    bgImg.setScale(bgCoef, bgCoef).setPosition(innerWidth / 2, innerHeight / 2);
+    bgImg
+      .setScale(bgCoef, bgCoef)
+      .setPosition(innerWidth / 2, innerHeight / 2)
+      .setDepth(-1);
     replicId += 1;
     readReplic(replicId, scene);
   } else {
     textBox = createTextBox(
       scene,
       innerWidth / 2 - 150,
-      innerHeight / 2 - 32,
+      500,
       {
         wrapWidth: 260,
         fixedWidth: 260,
@@ -73,6 +76,7 @@ class Dialog extends Phaser.Scene {
   }
 
   create() {
+    console.log(personConfig);
     const mainPerson = new Person(
       personConfig,
       this, //scene,
@@ -92,7 +96,7 @@ const createTextBox = function (scene, x, y, config, title) {
   const wrapWidth = GetValue(config, 'wrapWidth', 0);
   const fixedWidth = GetValue(config, 'fixedWidth', 0);
   const fixedHeight = GetValue(config, 'fixedHeight', 0);
-  const textBox = scene.rexUI.add
+  var textBox = scene.rexUI.add
     .textBox({
       x: x,
       y: y,
@@ -114,6 +118,7 @@ const createTextBox = function (scene, x, y, config, title) {
     })
     .setOrigin(0)
     .layout()
+    .setDepth(6)
     .setInteractive()
     .on(
       'pointerdown',
@@ -139,25 +144,20 @@ const createTextBox = function (scene, x, y, config, title) {
 };
 
 const createTitle = function (scene, x, y, titleText) {
-  const title = scene.add.text(x + 170, y - 8, titleText, {
-    // background: scene.rexUI.add.roundRectangle(
-    //   x + 200,
-    //   y,
-    //   130,
-    //   40,
-    //   10,
-    //   0xc62d6e,
-    // ),
-    backgroundColor: '#c62d6e',
-    padding: {
-      left: 10,
-      right: 10,
-      top: 5,
-      bottom: 5,
-    },
-    align: 'center',
-    fontSize: '20px',
-  });
+  // const title = scene.add
+  //   .text(x + 170, y - 8, titleText, {
+  //     background: scene.rexUI.add.roundRectangle(
+  //       x + 230,
+  //       y,
+  //       130,
+  //       40,
+  //       10,
+  //       0xc62d6e,
+  //     ),
+  //     align: 'center',
+  //     fontSize: '20px',
+  //   })
+  //   .setDepth(7);
 
   return title;
 };

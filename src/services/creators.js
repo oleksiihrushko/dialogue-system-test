@@ -2,6 +2,7 @@ const hairBackArr = ['hair_1_back', 'hair_2_back'];
 const bodyArr = ['body_1', 'body_2'];
 const hairArr = ['hair_1', 'hair_2'];
 const clothes = ['clothes_1', 'clothes_2'];
+import { setStage } from '../firstPage.js';
 
 const personConstructor = {
   create_hair_back: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
@@ -17,7 +18,8 @@ const personConstructor = {
     const bodyImg = scene.add.image(0, 0, bodyArr[idx]);
     bodyImg
       .setScale(scaleCoef, scaleCoef)
-      .setPosition(mainHeroX, mainHeroY).depth = 1;
+      .setPosition(mainHeroX, mainHeroY)
+      .setDepth(1);
 
     return bodyImg;
   },
@@ -26,7 +28,8 @@ const personConstructor = {
     const hair_Img = scene.add.image(0, 0, hairArr[idx]);
     hair_Img
       .setScale(scaleCoef, scaleCoef)
-      .setPosition(mainHeroX, mainHeroY).depth = 3;
+      .setPosition(mainHeroX, mainHeroY)
+      .setDepth(3);
 
     return hair_Img;
   },
@@ -35,79 +38,107 @@ const personConstructor = {
     const clothes_Img = scene.add.image(0, 0, clothes[idx]);
     clothes_Img
       .setScale(scaleCoef, scaleCoef)
-      .setPosition(mainHeroX, mainHeroY).depth = 2;
+      .setPosition(mainHeroX, mainHeroY)
+      .setDepth(2);
 
     return clothes_Img;
   },
 };
 
-const createTabs = scene => {
-  var tabs = scene.rexUI.add
-    .tabs({
-      x: innerWidth / 2,
-      y: 600,
+class Tabs {
+  constructor(scene) {
+    this.tabs = scene.rexUI.add
+      .roundRectangle(innerWidth / 2, 557, 300, 60, 10, 0xffffff)
+      .setAlpha(0.5)
+      .setDepth(5);
 
-      panel: scene.rexUI.add
-        .roundRectangle(0, 0, 300, 60, 10, 0xffffff)
-        .setAlpha(0.5),
-
-      panel1: scene.rexUI.add
-        .roundRectangle(
-          innerWidth / 2,
-          587,
-          100,
-          10,
-          {
-            bl: 20,
-            br: 20,
-          },
-          0xf48bb8,
-        )
+    this.buttons = {
+      button0: scene.add
+        .image(innerWidth / 2 - 20, 520, 'ellipseA')
+        .setScale(0.8)
         .setDepth(5)
-        .setStrokeStyle(1, 0xffffff, 1),
+        .setInteractive()
+        .on('pointerdown', () => this.clickBtn(0)),
 
-      topButtons: [
-        scene.add.image(0, -10, 'ellipseA').setScale(0.8),
-        scene.add.image(0, -10, 'ellipse'),
-        scene.add.image(0, -10, 'ellipse'),
-        scene.add.image(0, -10, 'ellipse'),
-        scene.add.image(0, -10, 'ellipse'),
-      ],
+      button1: scene.add
+        .image(innerWidth / 2, 520, 'ellipse')
+        .setScale(0.8)
+        .setDepth(5)
+        .setInteractive()
+        .on('pointerdown', () => this.clickBtn(1)),
+
+      button2: scene.add
+        .image(innerWidth / 2 + 20, 520, 'ellipse')
+        .setScale(0.8)
+        .setDepth(5)
+        .setInteractive()
+        .on('pointerdown', () => this.clickBtn(2)),
+
+      lastClickedIdx: 0,
+    };
+  }
+
+  clickBtn(idx) {
+    this.buttons[`button${this.buttons.lastClickedIdx}`].setTexture('ellipse');
+    this.buttons[`button${idx}`].setTexture('ellipseA');
+
+    this.buttons.lastClickedIdx = idx;
+    setStage(idx);
+  }
+}
+
+const createNextBtn = (scene, callback) => {
+  const sbmtBtn = scene.rexUI.add
+    .textBox({
+      x: innerWidth / 2 + 100,
+      y: 560,
+
+      background: scene.rexUI.add
+        .roundRectangle(0, 0, 0, 0, 10, 0xdb5186)
+        .setDepth(6),
+
+      text: scene.add.text(0, 0, 'Next', { color: '#fff' }).setDepth(6),
 
       space: {
-        topButtonsOffset: 103,
-        topButton: 10,
+        left: 5,
+        right: 5,
+        top: 5,
+        bottom: 5,
       },
     })
+    .setOrigin(0)
     .layout();
-
-  tabs.setDepth(5);
-
-  scene.print = scene.add.text(0, 0, '');
-  tabs.on(
-    'button.click',
-    function (button, groupName, index) {
-      // console.log(button);
-      scene.print.text += index + '\n';
-      button.texture.remove('ellipse');
-      // console.log(button);
-
-      button.texture.key = 'ellipseA';
-      button.update();
-      tabs.getElement('panel').setAlpha(+`0.${index}` + 0.1);
-    },
-    scene,
-  );
-};
-
-const createSbmtBtn = (scene, callback) => {
-  const sbmtBtn = scene.rexUI.add
-    .roundRectangle(innerWidth / 2, 650, 30, 10, 5, 0xffffff)
-    .setDepth(6);
 
   sbmtBtn.setInteractive().on('pointerdown', callback);
 
   return sbmtBtn;
 };
 
-export { personConstructor, createTabs, createSbmtBtn };
+const createSbmtBtn = (scene, callback) => {
+  const sbmtBtn = scene.rexUI.add
+    .textBox({
+      x: innerWidth / 2 - 73,
+      y: 610,
+
+      background: scene.rexUI.add
+        .roundRectangle(0, 0, 0, 0, 10, 0xdb5186)
+        .setDepth(6),
+
+      text: scene.add.text(0, 0, 'Confirm', { color: '#fff' }).setDepth(6),
+
+      space: {
+        left: 40,
+        right: 40,
+        top: 10,
+        bottom: 10,
+      },
+    })
+    .setOrigin(0)
+    .layout();
+
+  sbmtBtn.setInteractive().on('pointerdown', callback);
+
+  return sbmtBtn;
+};
+
+export { personConstructor, Tabs, createNextBtn, createSbmtBtn };

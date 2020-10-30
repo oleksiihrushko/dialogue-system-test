@@ -67,7 +67,6 @@ const personConstructor = {
     mainHeroX,
     mainHeroY,
   ) => {
-    console.log(`face_${gender}_${faceColor[color]}_${emotion}`);
     const face_Img = scene.add.image(
       0,
       0,

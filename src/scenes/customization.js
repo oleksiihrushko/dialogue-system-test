@@ -9,7 +9,8 @@ import hair_woman_1_backImg from '../images/woman/hair/hair_1_back.png';
 import hair_woman_2_backImg from '../images/woman/hair/hair_2_back.png';
 import clothes_woman_1Img from '../images/woman/clothes/clothes_1.png';
 import clothes_woman_2Img from '../images/woman/clothes/clothes_2.png';
-import face_woman_defaultImg from '../images/woman/emotions/default.png';
+import face_woman_w_defaultImg from '../images/woman/emotions_white/default.png';
+import face_woman_b_defaultImg from '../images/woman/emotions_black/default.png';
 import arrowImg from '../images/arrow.png';
 import ellipseImg from '../images/ellipse.png';
 import ellipseAImg from '../images/ellipseA.png';
@@ -60,7 +61,8 @@ class Customization extends Phaser.Scene {
     this.load.image('hair_woman_2_back', hair_woman_2_backImg);
     this.load.image('clothes_woman_1', clothes_woman_1Img);
     this.load.image('clothes_woman_2', clothes_woman_2Img);
-    this.load.image('face_woman_default', face_woman_defaultImg);
+    this.load.image('face_woman_w_default', face_woman_w_defaultImg);
+    this.load.image('face_woman_b_default', face_woman_b_defaultImg);
   }
 
   create() {

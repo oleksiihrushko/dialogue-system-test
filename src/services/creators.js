@@ -14,6 +14,8 @@ const clothesArr = {
   woman: ['clothes_woman_1', 'clothes_woman_2'],
   man: ['clothes_man_1'],
 };
+
+const faceColor = ['w', 'b'];
 import { setStage } from '../scenes/customization.js';
 
 const personConstructor = {
@@ -56,8 +58,21 @@ const personConstructor = {
     return clothes_Img;
   },
 
-  create_face: (gender, emotion, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const face_Img = scene.add.image(0, 0, `face_${gender}_${emotion}`);
+  create_face: (
+    gender,
+    emotion,
+    color,
+    scene,
+    scaleCoef,
+    mainHeroX,
+    mainHeroY,
+  ) => {
+    console.log(`face_${gender}_${faceColor[color]}_${emotion}`);
+    const face_Img = scene.add.image(
+      0,
+      0,
+      `face_${gender}_${faceColor[color]}_${emotion}`,
+    );
     face_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)

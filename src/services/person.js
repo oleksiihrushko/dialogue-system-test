@@ -49,6 +49,7 @@ class Person {
     this.face = personConstructor.create_face(
       this.gender,
       this.personConfig[3],
+      this.personConfig[0],
       this.scene,
       this.scaleCoef,
       this.mainHeroX,
@@ -59,6 +60,18 @@ class Person {
   changeOption(stageNames, stageIdx) {
     this.idx === 1 ? (this.idx = 0) : (this.idx = 1);
     stageNames[stageIdx].forEach(name => {
+      if (name === 'body') {
+        this.face.destroy();
+        this.face = personConstructor.create_face(
+          this.gender,
+          this.personConfig[3],
+          this.idx,
+          this.scene,
+          this.scaleCoef,
+          this.mainHeroX,
+          this.mainHeroY,
+        );
+      }
       this[name].destroy();
       this[name] = personConstructor[`create_${name}`](
         this.gender,
@@ -71,11 +84,12 @@ class Person {
     });
   }
 
-  changeFace(faceKey) {
+  changeFace(faceKey, color) {
     this.face.destroy();
     this.face = personConstructor.create_face(
       this.gender,
       faceKey,
+      color,
       this.scene,
       this.scaleCoef,
       this.mainHeroX,

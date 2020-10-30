@@ -20,12 +20,18 @@ import hair_woman_2_backImg from '../images/woman/hair/hair_2_back.png';
 import clothes_woman_1Img from '../images/woman/clothes/clothes_1.png';
 import clothes_man_1Img from '../images/man/clothes/clothes_1.png';
 import clothes_woman_2Img from '../images/woman/clothes/clothes_2.png';
-import face_woman_defaultImg from '../images/woman/emotions/default.png';
-import face_woman_shyImg from '../images/woman/emotions/shy.png';
-import face_woman_angryImg from '../images/woman/emotions/angry.png';
-import face_woman_joyImg from '../images/woman/emotions/joy.png';
-import face_woman_surprisedImg from '../images/woman/emotions/surprised.png';
-import face_woman_sadImg from '../images/woman/emotions/sad.png';
+import face_woman_w_defaultImg from '../images/woman/emotions_white/default.png';
+import face_woman_w_shyImg from '../images/woman/emotions_white/shy.png';
+import face_woman_w_angryImg from '../images/woman/emotions_white/angry.png';
+import face_woman_w_joyImg from '../images/woman/emotions_white/joy.png';
+import face_woman_w_surprisedImg from '../images/woman/emotions_white/surprised.png';
+import face_woman_w_sadImg from '../images/woman/emotions_white/sad.png';
+import face_woman_b_defaultImg from '../images/woman/emotions_black/default.png';
+import face_woman_b_shyImg from '../images/woman/emotions_black/shy.png';
+import face_woman_b_angryImg from '../images/woman/emotions_black/angry.png';
+import face_woman_b_joyImg from '../images/woman/emotions_black/joy.png';
+import face_woman_b_surprisedImg from '../images/woman/emotions_black/surprised.png';
+import face_woman_b_sadImg from '../images/woman/emotions_black/sad.png';
 import face_man_defaultImg from '../images/man/emotions/default.png';
 
 let bgImg;
@@ -94,7 +100,7 @@ const readReplic = (replicId, scene) => {
 
         // emotion change
         if (scenario[replicId].emotion) {
-          mainPerson.changeFace(scenario[replicId].emotion);
+          mainPerson.changeFace(scenario[replicId].emotion, personConfig[0]);
         }
       } else {
         // create person
@@ -111,7 +117,10 @@ const readReplic = (replicId, scene) => {
 
         // emotion change
         if (scenario[replicId].emotion) {
-          secondPerson.changeFace(scenario[replicId].emotion);
+          secondPerson.changeFace(
+            scenario[replicId].emotion,
+            secondPersonConfig[0],
+          );
         }
 
         secondPerson.flipPerson();
@@ -153,13 +162,19 @@ class Dialog extends Phaser.Scene {
     this.load.image('clothes_woman_1', clothes_woman_1Img);
     this.load.image('clothes_man_1', clothes_man_1Img);
     this.load.image('clothes_woman_2', clothes_woman_2Img);
-    this.load.image('face_woman_default', face_woman_defaultImg);
+    this.load.image('face_woman_w_default', face_woman_w_defaultImg);
+    this.load.image('face_woman_w_shy', face_woman_w_shyImg);
+    this.load.image('face_woman_w_angry', face_woman_w_angryImg);
+    this.load.image('face_woman_w_joy', face_woman_w_joyImg);
+    this.load.image('face_woman_w_surprised', face_woman_w_surprisedImg);
+    this.load.image('face_woman_w_sad', face_woman_w_sadImg);
+    this.load.image('face_woman_b_default', face_woman_b_defaultImg);
+    this.load.image('face_woman_b_shy', face_woman_b_shyImg);
+    this.load.image('face_woman_b_angry', face_woman_b_angryImg);
+    this.load.image('face_woman_b_joy', face_woman_b_joyImg);
+    this.load.image('face_woman_b_surprised', face_woman_b_surprisedImg);
+    this.load.image('face_woman_b_sad', face_woman_b_sadImg);
     this.load.image('face_man_default', face_man_defaultImg);
-    this.load.image('face_woman_shy', face_woman_shyImg);
-    this.load.image('face_woman_angry', face_woman_angryImg);
-    this.load.image('face_woman_joy', face_woman_joyImg);
-    this.load.image('face_woman_surprised', face_woman_surprisedImg);
-    this.load.image('face_woman_sad', face_woman_sadImg);
   }
 
   create() {

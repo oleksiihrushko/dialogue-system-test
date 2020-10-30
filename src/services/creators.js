@@ -67,12 +67,8 @@ const personConstructor = {
     mainHeroX,
     mainHeroY,
   ) => {
-    const face_Img = scene.add.image(
-      0,
-      0,
-      `face_${gender}_${faceColor[color]}_${emotion}`,
-    );
-    face_Img
+    const face_Img = scene.add
+      .image(0, 0, `face_${gender}_${faceColor[color]}_${emotion}`)
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)
       .setDepth(2);

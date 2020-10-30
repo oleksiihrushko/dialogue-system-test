@@ -32,7 +32,7 @@ import face_woman_b_angryImg from '../images/woman/emotions_black/angry.png';
 import face_woman_b_joyImg from '../images/woman/emotions_black/joy.png';
 import face_woman_b_surprisedImg from '../images/woman/emotions_black/surprised.png';
 import face_woman_b_sadImg from '../images/woman/emotions_black/sad.png';
-import face_man_defaultImg from '../images/man/emotions/default.png';
+import face_man_w_defaultImg from '../images/man/emotions/default.png';
 
 let bgImg;
 var title = null;
@@ -174,7 +174,7 @@ class Dialog extends Phaser.Scene {
     this.load.image('face_woman_b_joy', face_woman_b_joyImg);
     this.load.image('face_woman_b_surprised', face_woman_b_surprisedImg);
     this.load.image('face_woman_b_sad', face_woman_b_sadImg);
-    this.load.image('face_man_default', face_man_defaultImg);
+    this.load.image('face_man_w_default', face_man_w_defaultImg);
   }
 
   create() {

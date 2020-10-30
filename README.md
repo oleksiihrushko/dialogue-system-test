@@ -3,7 +3,7 @@
 Для быстрого старта необходимо склонировать репозиторий.
 
 ```shell
-git clone https://github.com/luxplanjay/webpack-starter-kit.git
+git clone https://github.com/oleksiihrushko/dialogue-system-test.git
 ```
 
 Затем перейти в папку проекта.

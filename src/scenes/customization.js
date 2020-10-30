@@ -1,18 +1,18 @@
 import balconyImg from '../images/bg/balcony.jpg';
 import hallImg from '../images/bg/hall.jpg';
 import bedroomImg from '../images/bg/bedroom.jpg';
-import body_1Img from '../images/body/body_1.png';
-import body_2Img from '../images/body/body_2.png';
+import body_woman_1Img from '../images/woman/body/body_1.png';
+import body_woman_2Img from '../images/woman/body/body_2.png';
+import hair_woman_1Img from '../images/woman/hair/hair_1.png';
+import hair_woman_2Img from '../images/woman/hair/hair_2.png';
+import hair_woman_1_backImg from '../images/woman/hair/hair_1_back.png';
+import hair_woman_2_backImg from '../images/woman/hair/hair_2_back.png';
+import clothes_woman_1Img from '../images/woman/clothes/clothes_1.png';
+import clothes_woman_2Img from '../images/woman/clothes/clothes_2.png';
+import face_woman_defaultImg from '../images/woman/emotions/default.png';
 import arrowImg from '../images/arrow.png';
 import ellipseImg from '../images/ellipse.png';
 import ellipseAImg from '../images/ellipseA.png';
-import hair_1Img from '../images/hair/hair_1.png';
-import hair_2Img from '../images/hair/hair_2.png';
-import hair_1_backImg from '../images/hair/hair_1_back.png';
-import hair_2_backImg from '../images/hair/hair_2_back.png';
-import clothes_1Img from '../images/clothes/clothes_1.png';
-import clothes_2Img from '../images/clothes/clothes_2.png';
-import face_defaultImg from '../images/emotions/default.png';
 
 import Dialog from '../scenes/dialog.js';
 import { game } from '../index.js';
@@ -24,7 +24,7 @@ const stageTitles = ['body', 'hair', 'clothes'];
 const mainHeroX = innerWidth / 2;
 const mainHeroY = innerHeight / 2;
 
-export const personConfig = [0, 0, 0, 'face_default'];
+export const personConfig = [0, 0, 0, 'default'];
 
 let stageIdx = 0;
 let chooseText;
@@ -49,18 +49,18 @@ class Customization extends Phaser.Scene {
     this.load.image('balcony', balconyImg);
     this.load.image('hall', hallImg);
     this.load.image('bedroom', bedroomImg);
-    this.load.image('body_1', body_1Img);
-    this.load.image('body_2', body_2Img);
     this.load.image('arrow', arrowImg);
     this.load.image('ellipse', ellipseImg);
     this.load.image('ellipseA', ellipseAImg);
-    this.load.image('hair_1', hair_1Img);
-    this.load.image('hair_2', hair_2Img);
-    this.load.image('hair_1_back', hair_1_backImg);
-    this.load.image('hair_2_back', hair_2_backImg);
-    this.load.image('clothes_1', clothes_1Img);
-    this.load.image('clothes_2', clothes_2Img);
-    this.load.image('face_default', face_defaultImg);
+    this.load.image('body_woman_1', body_woman_1Img);
+    this.load.image('body_woman_2', body_woman_2Img);
+    this.load.image('hair_woman_1', hair_woman_1Img);
+    this.load.image('hair_woman_2', hair_woman_2Img);
+    this.load.image('hair_woman_1_back', hair_woman_1_backImg);
+    this.load.image('hair_woman_2_back', hair_woman_2_backImg);
+    this.load.image('clothes_woman_1', clothes_woman_1Img);
+    this.load.image('clothes_woman_2', clothes_woman_2Img);
+    this.load.image('face_woman_default', face_woman_defaultImg);
   }
 
   create() {
@@ -70,7 +70,15 @@ class Customization extends Phaser.Scene {
 
     const scaleCoef = innerHeight / 1300;
 
-    person = new Person(personConfig, this, scaleCoef, mainHeroX, mainHeroY);
+    const genderW = 'woman';
+    person = new Person(
+      genderW,
+      personConfig,
+      this,
+      scaleCoef,
+      mainHeroX,
+      mainHeroY,
+    );
 
     const arrowLeft = this.make.image({
       x: person.body.x - innerWidth / 3,

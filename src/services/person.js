@@ -1,8 +1,9 @@
 const { personConstructor } = require('./creators.js');
 
 class Person {
-  constructor(personConfig, scene, scaleCoef, mainHeroX, mainHeroY) {
+  constructor(gender, personConfig, scene, scaleCoef, mainHeroX, mainHeroY) {
     this.idx = 0;
+    this.gender = gender;
     this.personConfig = personConfig;
     this.scene = scene;
     this.scaleCoef = scaleCoef;
@@ -10,6 +11,7 @@ class Person {
     this.mainHeroY = mainHeroY;
 
     this.body = personConstructor.create_body(
+      this.gender,
       this.personConfig[0],
       this.scene,
       this.scaleCoef,
@@ -18,6 +20,7 @@ class Person {
     );
 
     this.hair_back = personConstructor.create_hair_back(
+      this.gender,
       this.personConfig[1],
       this.scene,
       this.scaleCoef,
@@ -26,6 +29,7 @@ class Person {
     );
 
     this.hair = personConstructor.create_hair(
+      this.gender,
       this.personConfig[1],
       this.scene,
       this.scaleCoef,
@@ -34,6 +38,7 @@ class Person {
     );
 
     this.clothes = personConstructor.create_clothes(
+      this.gender,
       this.personConfig[2],
       this.scene,
       this.scaleCoef,
@@ -42,6 +47,7 @@ class Person {
     );
 
     this.face = personConstructor.create_face(
+      this.gender,
       this.personConfig[3],
       this.scene,
       this.scaleCoef,
@@ -55,6 +61,7 @@ class Person {
     stageNames[stageIdx].forEach(name => {
       this[name].destroy();
       this[name] = personConstructor[`create_${name}`](
+        this.gender,
         this.idx,
         this.scene,
         this.scaleCoef,
@@ -67,6 +74,7 @@ class Person {
   changeFace(faceKey) {
     this.face.destroy();
     this.face = personConstructor.create_face(
+      this.gender,
       faceKey,
       this.scene,
       this.scaleCoef,
@@ -81,6 +89,14 @@ class Person {
     this.hair.destroy();
     this.clothes.destroy();
     this.face.destroy();
+  }
+
+  flipPerson() {
+    this.body.setFlipX(true);
+    this.hair_back.setFlipX(true);
+    this.hair.setFlipX(true);
+    this.clothes.setFlipX(true);
+    this.face.setFlipX(true);
   }
 }
 export default Person;

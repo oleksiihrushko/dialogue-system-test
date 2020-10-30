@@ -1,25 +1,3 @@
-# Webpack starter kit &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-
-## Developing
-
-### Prerequisites
-
-Для корректной работы SASS-компилятора и других инструментов, необходимо один
-раз глобально поставить дополнительные пакеты, выполнив в терминале (с правами
-администратора) следующие команды. Пользователям MacOS ничего делать не нужно.
-
-Пользователям **Windows**.
-
-```shell
-npm install --global windows-build-tools
-```
-
-Пользователям **Linux**.
-
-```shell
-sudo apt-get install gcc g++ make
-```
-
 ### Setting up Dev
 
 Для быстрого старта необходимо склонировать репозиторий.
@@ -28,23 +6,10 @@ sudo apt-get install gcc g++ make
 git clone https://github.com/luxplanjay/webpack-starter-kit.git
 ```
 
-Переименовать папку сборки по имени вашего проекта.
-
-```shell
-mv webpack-starter-kit имя_проекта
-```
-
 Затем перейти в папку проекта.
 
 ```shell
 cd имя_проекта
-```
-
-Находясь в папке проекта удалить папку `.git` связанную с репозиторием сборки
-выполнив следующую команду.
-
-```shell
-npx rimraf .git
 ```
 
 Установить все зависимости.

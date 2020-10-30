@@ -1,12 +1,24 @@
-const hairBackArr = ['hair_1_back', 'hair_2_back'];
-const bodyArr = ['body_1', 'body_2'];
-const hairArr = ['hair_1', 'hair_2'];
-const clothesArr = ['clothes_1', 'clothes_2'];
+const hairBackArr = {
+  woman: ['hair_woman_1_back', 'hair_woman_2_back'],
+  man: ['hair_man_1_back'],
+};
+const bodyArr = {
+  woman: ['body_woman_1', 'body_woman_2'],
+  man: ['body_man_1'],
+};
+const hairArr = {
+  woman: ['hair_woman_1', 'hair_woman_2'],
+  man: ['hair_man_1'],
+};
+const clothesArr = {
+  woman: ['clothes_woman_1', 'clothes_woman_2'],
+  man: ['clothes_man_1'],
+};
 import { setStage } from '../scenes/customization.js';
 
 const personConstructor = {
-  create_hair_back: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const hair_back_Img = scene.add.image(0, 0, hairBackArr[idx]);
+  create_hair_back: (gender, idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const hair_back_Img = scene.add.image(0, 0, hairBackArr[gender][idx]);
     hair_back_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY);
@@ -14,8 +26,8 @@ const personConstructor = {
     return hair_back_Img;
   },
 
-  create_body: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const bodyImg = scene.add.image(0, 0, bodyArr[idx]);
+  create_body: (gender, idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const bodyImg = scene.add.image(0, 0, bodyArr[gender][idx]);
     bodyImg
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)
@@ -24,8 +36,8 @@ const personConstructor = {
     return bodyImg;
   },
 
-  create_hair: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const hair_Img = scene.add.image(0, 0, hairArr[idx]);
+  create_hair: (gender, idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const hair_Img = scene.add.image(0, 0, hairArr[gender][idx]);
     hair_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)
@@ -34,8 +46,8 @@ const personConstructor = {
     return hair_Img;
   },
 
-  create_clothes: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const clothes_Img = scene.add.image(0, 0, clothesArr[idx]);
+  create_clothes: (gender, idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const clothes_Img = scene.add.image(0, 0, clothesArr[gender][idx]);
     clothes_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)
@@ -44,8 +56,8 @@ const personConstructor = {
     return clothes_Img;
   },
 
-  create_face: (face, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const face_Img = scene.add.image(0, 0, face);
+  create_face: (gender, emotion, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const face_Img = scene.add.image(0, 0, `face_${gender}_${emotion}`);
     face_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)

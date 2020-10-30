@@ -1,8 +1,8 @@
 const hairBackArr = ['hair_1_back', 'hair_2_back'];
 const bodyArr = ['body_1', 'body_2'];
 const hairArr = ['hair_1', 'hair_2'];
-const clothes = ['clothes_1', 'clothes_2'];
-import { setStage } from '../firstPage.js';
+const clothesArr = ['clothes_1', 'clothes_2'];
+import { setStage } from '../scenes/customization.js';
 
 const personConstructor = {
   create_hair_back: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
@@ -35,13 +35,23 @@ const personConstructor = {
   },
 
   create_clothes: (idx, scene, scaleCoef, mainHeroX, mainHeroY) => {
-    const clothes_Img = scene.add.image(0, 0, clothes[idx]);
+    const clothes_Img = scene.add.image(0, 0, clothesArr[idx]);
     clothes_Img
       .setScale(scaleCoef, scaleCoef)
       .setPosition(mainHeroX, mainHeroY)
       .setDepth(2);
 
     return clothes_Img;
+  },
+
+  create_face: (face, scene, scaleCoef, mainHeroX, mainHeroY) => {
+    const face_Img = scene.add.image(0, 0, face);
+    face_Img
+      .setScale(scaleCoef, scaleCoef)
+      .setPosition(mainHeroX, mainHeroY)
+      .setDepth(2);
+
+    return face_Img;
   },
 };
 
